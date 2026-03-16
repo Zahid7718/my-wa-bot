@@ -1,11 +1,16 @@
-print("WhatsApp Bot is starting...")
 import os
+from flask import Flask
 
-# ہم یہاں آپ کی اوپن راؤٹر کی چابی استعمال کریں گے
-api_key = os.getenv("OPENROUTER_API_KEY")
+app = Flask(__name__)
 
-if api_key:
-    print("AI Brain is connected!")
-else:
-    print("API Key missing!")
-  
+# آپ کے بوٹ کی پہچان
+AGENT_NAME = "IQLEEM"
+
+@app.route('/')
+def home():
+    return f"Welcome! I am {AGENT_NAME}, your AI Agent. I am running and ready."
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    print(f"{AGENT_NAME} is starting on port {port}...")
+    app.run(host='0.0.0.0', port=port)
